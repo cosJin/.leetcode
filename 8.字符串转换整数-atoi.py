@@ -19,20 +19,20 @@ class Solution(object):
         for t in s:
             if t in dir or t in bef:
                 if t in bef:
-                    if begin == 0:return res
+                    if begin == 0:return -2**31 if res*tag <= -2**31 else 2**31-1 if res*tag >= 2**31-1 else res*tag
                     elif bef[t] == -1 or bef[t] == 1: 
                         tag = bef[t]
                         begin=0
                     continue
-                i = dir[t]
-                if i != 0 or begin == 0:
+                elif t in dir:
+                    i = dir[t]
                     res = res*10 + i
                     begin = 0
-            else: return res
+            else: return  -2**31 if res*tag <= -2**31 else 2**31-1 if res*tag >= 2**31-1 else res*tag
         return -2**31 if res*tag <= -2**31 else 2**31-1 if res*tag >= 2**31-1 else res*tag
 
 
 
 # @lc code=end
 
-print(Solution().myAtoi("   -12"))
+print(Solution().myAtoi("    -88827   5655  U"))
